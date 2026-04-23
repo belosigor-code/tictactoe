@@ -164,7 +164,7 @@ export default function HomeView({ userId, stats, onStartWorkout, onEditSchedule
   const calendarData = (() => {
     const fmtDate = (d: string) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     if (primaryGoal?.targetDate) {
-      const startDate = primaryGoal.createdAt.split('T')[0];
+      const startDate = new Date(primaryGoal.createdAt).toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
       const endDate = primaryGoal.targetDate;
       const active = new Set<string>();
       sessions.forEach((s) => { if (s.date >= startDate && s.date <= endDate) active.add(s.date); });

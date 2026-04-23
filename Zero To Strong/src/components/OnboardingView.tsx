@@ -110,9 +110,9 @@ export default function OnboardingView({ user, onComplete }: OnboardingViewProps
   const progressPct = Math.round((step / TOTAL_STEPS) * 100);
 
   const step3Valid = goalType === 'weight'
-    ? !!weightTarget
+    ? !!weightTarget && !!weightTargetDate
     : goalType === 'strength'
-      ? !!strengthExercise && !!strengthTarget
+      ? !!strengthExercise && !!strengthTarget && !!strengthTargetDate
       : false;
 
   return (
@@ -246,11 +246,12 @@ export default function OnboardingView({ user, onComplete }: OnboardingViewProps
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-white/40 mb-2">TARGET DATE (OPTIONAL)</label>
+                <label className="block text-xs font-bold uppercase tracking-widest text-white/40 mb-2">TARGET DATE</label>
                 <input
                   type="date"
                   value={weightTargetDate}
                   onChange={(e) => setWeightTargetDate(e.target.value)}
+                  required
                   className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 text-white text-sm focus:outline-none focus:border-primary/60 transition-colors"
                 />
               </div>
@@ -297,11 +298,12 @@ export default function OnboardingView({ user, onComplete }: OnboardingViewProps
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-white/40 mb-2">TARGET DATE (OPTIONAL)</label>
+                <label className="block text-xs font-bold uppercase tracking-widest text-white/40 mb-2">TARGET DATE</label>
                 <input
                   type="date"
                   value={strengthTargetDate}
                   onChange={(e) => setStrengthTargetDate(e.target.value)}
+                  required
                   className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 text-white text-sm focus:outline-none focus:border-primary/60 transition-colors"
                 />
               </div>
